@@ -1,0 +1,178 @@
+/* ==================================== */
+/* Container Halaman Register (Sama dengan Login) */
+/* ==================================== */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; 
+  padding-top: 100px; 
+  
+  min-height: 100vh;
+  background: linear-gradient(135deg, #00bfff 0%, #3a7bd5 100%); 
+  padding-bottom: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ==================================== */
+/* Register Form Card (Sama dengan Login) */
+/* ==================================== */
+/* ==================================== */
+/* Register Form Card (Sama dengan Login) */
+/* ==================================== */
+.register-form {
+  background: #ffffff;
+  /* PERUBAHAN 1: Kurangi padding secara keseluruhan */
+  padding: 30px 40px; 
+  border-radius: 10px; 
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); 
+  width: 100%;
+  
+  /* PERUBAHAN 2: Kurangi lebar maksimum form */
+  max-width: 400px; /* Diubah dari 470px menjadi 400px */
+  
+  text-align: center;
+  box-sizing: border-box;
+  position: relative; 
+  z-index: 1; 
+}
+
+/* ==================================== */
+/* Header / Title                       */
+/* ==================================== */
+.register-form h2.form-title {
+  margin-top: 0;
+  margin-bottom: 40px;
+  color: #333;
+  font-size: 2rem; 
+  font-weight: 700;
+  text-align: left;
+  /* Garis bawah seperti di gambar */
+  border-bottom: 3px solid #3a7bd5; 
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* ==================================== */
+/* Form Groups (Input Ringkas)          */
+/* ==================================== */
+.form-group {
+  margin-bottom: 25px; 
+  text-align: left;
+}
+
+.input-with-icon {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 5px 0;
+}
+
+.input-with-icon .icon {
+  color: #aaa;
+  font-size: 1.1rem;
+  margin-right: 15px;
+}
+
+.input-with-icon input {
+  width: 100%;
+  padding: 10px 0;
+  border: none; 
+  background-color: transparent;
+  font-size: 1rem;
+  color: #555;
+}
+
+.input-with-icon input:focus {
+  outline: none;
+  border-bottom: 1px solid #3a7bd5; /* Efek fokus yang halus */
+}
+
+/* Icon Toggle Password */
+.toggle-password {
+    color: #aaa;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding-left: 10px;
+}
+
+
+/* ==================================== */
+/* Terms & Conditions Checkbox          */
+/* ==================================== */
+.terms-conditions {
+    display: flex;
+    align-items: center;
+    margin-top: -5px;
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.terms-conditions input[type="checkbox"] {
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.terms-conditions label a {
+    color: #3a7bd5;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* ==================================== */
+/* Tombol Register                      */
+/* ==================================== */
+.btn-register {
+  width: 100%;
+  padding: 15px; 
+  background-color: #3a7bd5; /* Warna biru solid seperti di gambar */
+  color: white;
+  border: none;
+  border-radius: 5px; 
+  font-size: 1.1rem; 
+  font-weight: 600; 
+  cursor: pointer;
+  margin-top: 10px; 
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(58, 123, 213, 0.4);
+}
+
+.btn-register:hover {
+  background-color: #2e62b0; 
+  transform: translateY(-1px);
+}
+
+/* ==================================== */
+/* Link Login Now                       */
+/* ==================================== */
+.login-link-section {
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.login-link {
+    color: #3a7bd5;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 5px;
+    transition: color 0.3s;
+}
+
+.login-link:hover {
+    color: #2e62b0;
+    text-decoration: underline;
+}
+
+/* ==================================== */
+/* Responsif                            */
+/* ==================================== */
+@media (max-width: 600px) {
+  .register-form {
+    padding: 30px 20px;
+  }
+}

@@ -1,10 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
-import { version } from '../App.jsx';
+import * as App from '../App.jsx';
 
 function Navbar() {
-  const ver = version ??'';
+  const ver = App?.version ?? '';
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    navigate('/login'); 
+  };
 
   return (
     <motion.nav
@@ -18,12 +24,13 @@ function Navbar() {
       </div>
       <div className="navbar-right">
         <ul className="nav-links">
-          <li><a href="app">Beranda</a></li>
+          <li><Link to="/">Beranda</Link></li> 
           <li><a href="#">Program</a></li>
           <li><a href="#">Joki Program</a></li>
         </ul>
         <motion.button 
           className="btn-masuk"
+          onClick={handleLoginClick} 
           whileHover={{ 
             scale: 1.05,
             backgroundColor: "#2563eb",
@@ -37,6 +44,5 @@ function Navbar() {
     </motion.nav>
   );
 }
-
 
 export default Navbar;

@@ -1,0 +1,213 @@
+    /* ==================================== */
+    /* Latar Belakang Seluruh Halaman       */
+    /* ==================================== */
+
+    .login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* PENTING: Untuk penempatan partikel absolut */
+  min-height: 100vh; 
+  /* Latar Belakang Biru yang Cantik */
+  background: linear-gradient(135deg, #00bfff 0%, #3a7bd5 100%); /* Gradien Biru Muda ke Biru Tua */
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden; /* Sembunyikan partikel yang mungkin keluar */
+}
+
+    /* ==================================== */
+    /* Login Form Card                      */
+    /* ==================================== */
+    .login-form {
+    background: #ffffff;
+    padding: 25px 50px; /* Padding lebih proporsional */
+    border-radius: 10px; /* Border radius lebih kecil */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); /* Shadow yang bersih */
+    width: 90%;
+    height: 70%;
+    max-width: 380px; /* Ukuran yang lebih ringkas seperti gambar */
+    text-align: center;
+    box-sizing: border-box;
+    /* Hapus ::before untuk menghilangkan garis biru di atas */
+    }
+
+    /* ==================================== */
+    /* Header / Title                       */
+    /* ==================================== */
+    .login-form h2.form-title {
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 2rem; 
+    font-weight: 700;
+    }
+
+    /* ==================================== */
+    /* Form Groups (Input Ringkas)          */
+    /* ==================================== */
+    .form-group {
+    margin-bottom: 25px; 
+    text-align: left;
+    }
+
+    /* Hilangkan label bawaan yang menumpuk */
+    .form-group label {
+    display: none; 
+    }
+
+    .input-with-icon {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd; /* Hanya garis bawah */
+    padding: 5px 0;
+    margin-bottom: 15px;
+    }
+
+    .input-with-icon .icon {
+    color: #aaa;
+    font-size: 1.1rem;
+    margin-right: 15px;
+    }
+
+    .input-with-icon input {
+    width: 100%;
+    padding: 10px 0;
+    border: none; /* Hilangkan semua border */
+    border-radius: 0;
+    box-sizing: border-box;
+    font-size: 1rem;
+    color: #555;
+    background-color: transparent; /* Latar belakang transparan */
+    transition: border-color 0.3s ease;
+    }
+
+    .input-with-icon input:focus {
+    border-color: transparent; 
+    outline: none;
+    box-shadow: none;
+    background-color: transparent;
+    }
+
+
+    /* ==================================== */
+    /* Lupa Password Link                   */
+    /* ==================================== */
+    .forgot-password {
+    margin-top: -15px; /* Tarik ke atas, dekat dengan input */
+    text-align: right;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+    }
+
+    .forgot-password a {
+    color: #999; /* Warna abu-abu yang lebih lembut */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    }
+
+    .forgot-password a:hover {
+    color: #3b82f6; 
+    }
+
+    /* ==================================== */
+    /* Login Button (Gradien)               */
+    /* ==================================== */
+    .btn-login {
+    width: 100%;
+    padding: 15px; 
+     background-color: #3a7bd5;
+    color: white;
+    border: none;
+    border-radius: 25px; /* Lebih bulat */
+    font-size: 1.1rem; 
+    font-weight: 700; 
+    cursor: pointer;
+    margin-top: 10px; 
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 5px 15px rgba(0, 198, 255, 0.4);
+    }
+
+    .btn-login:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    }
+
+    /* ==================================== */
+    /* Social Login & Sign Up               */
+    /* ==================================== */
+    .social-login-section {
+    margin-top: 35px;
+    }
+
+    .social-text {
+    font-size: 0.95rem;
+    color: #888;
+    margin-bottom: 15px;
+    }
+
+    .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 35px;
+    }
+
+    .social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: transform 0.2s;
+    }
+
+    .social-icon:hover {
+    transform: scale(1.1);
+    }
+
+    .facebook {
+    background-color: #3b5998;
+    }
+
+    .google {
+    background-color: #db4437;
+    }
+
+    .signup-section {
+    margin-top: 10px;
+    }
+
+    .signup-text {
+    font-size: 0.95rem;
+    color: #888;
+    margin-bottom: 5px;
+    }
+
+    .signup-link {
+    font-weight: 700;
+    color: #7451f2; /* Warna ungu dari gradien */
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: opacity 0.3s;
+    }
+
+    .signup-link:hover {
+    opacity: 0.8;
+    }
+
+    /* ==================================== */
+    /* Responsif (untuk Layar Kecil)       */
+    /* ==================================== */
+    @media (max-width: 600px) {
+    .login-form {
+        padding: 30px 20px;
+    }
+    }
