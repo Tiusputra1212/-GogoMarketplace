@@ -1,0 +1,91 @@
+:root {
+  --primary-color: #007bff;   /* Biru cerah untuk tombol dan aksen */
+  --secondary-color: #f8f9fa; /* Putih terang untuk latar belakang */
+  --dark-bg: #ffffff;        /* Latar belakang keseluruhan menjadi putih */
+  --light-text: #343a40;     /* Teks menjadi gelap */
+  --card-bg: #ffffff;        /* Card menjadi putih */
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--card-bg);
+  color: var(--light-text);
+  overflow-x: hidden;
+}
+
+.app-container {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-bg);
+    overflow-x: hidden;
+}
+
+/* Base button styles */
+.btn-primary, .btn-secondary, .btn-masuk, .btn-card-detail {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none; /* Pastikan link terlihat seperti tombol */
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: white; /* Teks putih di Hero Section (latar belakang biru) */
+  border: 1px solid white; 
+}
+
+.btn-masuk {
+  background-color: var(--primary-color);
+  color: white;
+  border: 1px solid var(--primary-color);
+}
+
+.btn-card-detail {
+  background-color: var(--primary-color);
+  color: white;
+  margin-top: 15px;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .btn-primary, .btn-secondary, .btn-masuk, .btn-card-detail {
+    padding: 8px 14px; /* Sedikit lebih kecil */
+    font-size: 13px;
+  }
+
+  .app-container > * {
+    padding-left: 15px; 
+    padding-right: 15px;
+  }
+  
+  .navbar {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box; 
+}

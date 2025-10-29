@@ -1,0 +1,136 @@
+.hero-container {
+    position: relative;
+    height: 70vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    margin-top: 60px; 
+}
+
+.hero-content {
+    max-width: 900px;
+}
+
+.hero-background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #007bff, #0056b3); 
+  z-index: 0;
+  opacity: 1;}
+
+.mesh-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.2) 1.5px, transparent 0);
+  background-size: 40px 40px; /* Jaring-jaring lebih besar */
+  animation: mesh-pan 60s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes mesh-pan {
+  from { background-position: 0 0; }
+  to { background-position: 4000px 4000px; } 
+}
+
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  color: white; /* Teks putih di atas latar biru */
+  max-width: 900px;
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-size: clamp(1.6rem, 6vw, 4.5rem);
+  margin-bottom: 5px;
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-content p {
+  font-size: 1.5em; /* Lebih besar */
+  margin-bottom: 40px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.hero-buttons .btn-primary, .hero-buttons .btn-secondary {
+  font-size: 1.1em;
+  padding: 12px 30px;
+  border-radius: 50px; /* Tombol lebih melengkung */
+}
+
+/* Tombol Beli Program (Primer) */
+.hero-buttons .btn-primary {
+  background-color: white;
+  color: var(--primary-color);
+}
+
+@media screen and (max-width: 768px) {
+    .hero-container {
+        height: 80vh; 
+        margin-top: 55px; 
+    }
+
+    .hero-content h1 {
+        font-size: clamp(1.8rem, 7.5vw, 2.5rem);
+        letter-spacing: 1px;
+    }
+
+    .hero-content p {
+        font-size: 1.1em;
+        margin-bottom: 30px;
+        padding: 0 10px;}
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .hero-buttons .btn-primary, .hero-buttons .btn-secondary {
+        width: 100%; 
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.8rem; /* lebih kecil untuk Android kecil */
+    line-height: 1.05;
+    letter-spacing: 0.8px;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .hero-content h1 {
+    font-size: 1.6rem; /* perangkat sangat kecil */
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
+  }
+}
