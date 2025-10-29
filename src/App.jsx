@@ -5,6 +5,9 @@ import SearchBar from './components/SearchBar';
 import CardSection from './components/CardSection';
 import './App.css';
 
+
+export const version = '0.3';
+
 function App() {
   return (
     <div className="app-container">

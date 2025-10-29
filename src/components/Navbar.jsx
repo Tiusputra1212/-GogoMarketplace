@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import './Navbar.css';
-
-
-var app="../../app.jsx"
+import { version } from '../App.jsx';
 
 function Navbar() {
+  const ver = version ??'';
+
   return (
     <motion.nav
       className="navbar"
@@ -32,7 +32,7 @@ function Navbar() {
         >
           Masuk
         </motion.button>
-        <span className="version-number">V0.1</span>
+        <span className="version-number">{`V${ver}`}</span>
       </div>
     </motion.nav>
   );
