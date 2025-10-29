@@ -9,7 +9,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import './App.css';
 
-export const version = '0.4';
+export const version = '0.4.1';
 
 export default function App() {
   return (
