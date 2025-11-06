@@ -163,3 +163,47 @@
     font-weight: 600;
     color: var(--light-text);
 }
+
+/* Pastikan wadah <li> adalah posisi relatif */
+.nav-links .nav-item-dropdown {
+    position: relative;
+    /* Ini penting agar dropdown menu diposisikan relatif terhadap item Beranda */
+}
+
+/* Gaya untuk dropdown menu (bisa sama dengan dropdown user) */
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Turun ke bawah item utama */
+    right: 0; /* Sesuaikan posisi horizontal */
+    z-index: 1000;
+    min-width: 180px;
+    background-color: white; /* Ganti sesuai tema Anda */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 5px; /* Sedikit jarak dari link Beranda */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Khusus untuk dropdown Beranda, atur agar muncul di bawah Beranda */
+.dropdown-menu.home-dropdown {
+    /* Atur agar dropdown muncul di bawah link Beranda */
+    left: 0; 
+    right: auto;
+}
+
+.dropdown-item {
+    padding: 10px 15px;
+    text-align: left;
+    color: #333;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.1s;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+}

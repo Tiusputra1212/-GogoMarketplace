@@ -1,0 +1,197 @@
+/* File: src/pages/MenjualProgram.css */
+
+/* --- Layout Dasar --- */
+.menjual-program-page {
+    padding: 0; /* Hapus padding agar header full width */
+    max-width: none; /* Hilangkan max-width bawaan */
+}
+
+/* --- Header Penuh Warna --- */
+.header-background {
+    background-color: #337ab7; /* Warna biru yang menenangkan */
+    color: white;
+    padding: 60px 40px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.header-title {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.header-subtitle {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+/* --- Layout Dua Kolom (Grid) --- */
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* Kolom Formulir (3) dan Sidebar (1) */
+    gap: 30px;
+    padding: 0 40px 60px; /* Padding samping dan bawah */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Gaya Card/Kartu --- */
+.form-card, .sidebar-card {
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08); /* Bayangan yang lebih menonjol */
+    background-color: white;
+}
+
+.form-card {
+    border-left: 5px solid #ff9900; /* Garis aksen oranye */
+}
+
+.sidebar-card {
+    background-color: #fff8e1; /* Latar belakang kuning muda untuk sidebar */
+    border: 1px solid #ffcc80;
+}
+
+.section-title {
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+/* --- Input dan Tombol --- */
+.program-form input, .program-form textarea {
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.program-form input:focus, .program-form textarea:focus {
+    border-color: #337ab7;
+    box-shadow: 0 0 0 3px rgba(51, 122, 183, 0.2); /* Efek fokus biru */
+    outline: none;
+}
+
+.large-button {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+/* --- Gaya List Sidebar --- */
+.info-list {
+    list-style: none;
+    padding: 0;
+}
+
+.info-list li {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="%23ff9900"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>') no-repeat left center;
+    background-size: 16px;
+    padding: 10px 0 10px 25px;
+    border-bottom: 1px dotted #ffcc80;
+}
+
+.info-list li:last-child {
+    border-bottom: none;
+}
+
+/* --- Responsif (Untuk Layar Kecil) --- */
+@media (max-width: 768px) {
+    .content-wrapper {
+        grid-template-columns: 1fr; /* Ubah menjadi satu kolom */
+        padding: 0 20px 40px;
+    }
+}
+
+/* Update gaya input, textarea */
+.program-form input[type="text"], 
+.program-form input[type="number"], 
+.program-form textarea {
+    /* Sudah ada: */
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box; 
+    
+    /* 🔑 PERBAIKAN TAMPILAN SESUAI GAMBAR 🔑 */
+    
+    /* 1. Sudut Membulat (Rounded Corners) */
+    border-radius: 8px; /* Nilai yang lebih besar untuk efek membulat yang jelas */
+    
+    /* 2. Border dan Shadow (Gaya 3D Lembut) */
+    border: 1px solid #ddd; /* Border tipis, warna terang */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Bayangan lembut */
+    background-color: white; /* Pastikan latar belakang putih */
+}
+
+/* Pertahankan efek fokus untuk interaktivitas yang baik */
+.program-form input:focus, .program-form textarea:focus {
+    border-color: #337ab7;
+    box-shadow: 0 0 0 3px rgba(51, 122, 183, 0.2); /* Efek fokus biru */
+    outline: none;
+}
+
+.teks-biru {
+    color: #337ab7; /* Contoh warna biru yang bagus */
+    font-weight: bold; /* Opsional: membuat teks lebih tebal */
+}
+
+
+/* Gaya untuk TEXT yang DIKETIK pengguna (sudah ada) */
+.program-form input[type="text"], 
+.program-form input[type="number"], 
+.program-form textarea {
+    /* ... properti lain (color: #007bff; sudah ada di sini untuk teks yang diketik) ... */
+    color: #007bff; /* Teks yang diketik tetap biru */
+}
+
+/* 🔑 MENAMBAH GAYA UNTUK PLACEHOLDER (TEKS BAYANGAN) 🔑 */
+
+.program-form input::placeholder, 
+.program-form textarea::placeholder {
+    color: #007bff; /* Warna biru untuk teks placeholder */
+    opacity: 0.7; /* Membuatnya sedikit transparan agar terlihat seperti placeholder */
+}
+
+/* Selector khusus browser lain (untuk kompatibilitas penuh) */
+
+/* Mozilla Firefox */
+.program-form input:-moz-placeholder, 
+.program-form textarea:-moz-placeholder {
+    color: #007bff;
+    opacity: 0.7;
+}
+
+/* Internet Explorer/Edge */
+.program-form input::-ms-input-placeholder, 
+.program-form textarea::-ms-input-placeholder {
+    color: #007bff;
+}
+
+/* Update gaya untuk primary-button agar berwarna biru */
+.primary-button {
+    /* 🔑 Warna Biru */
+    background-color: #007bff; /* Biru standar yang cerah */
+    color: white; /* Teks putih agar kontras */
+    
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px; /* Pertahankan sudut membulat */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600; /* Membuat teks lebih menonjol */
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+/* Efek Hover: Membuat tombol sedikit lebih gelap saat disentuh */
+.primary-button:hover {
+    background-color: #0056b3; /* Biru yang lebih gelap */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan lembut saat hover */
+}
+
+/* Tambahan: Pastikan tombol besar menempati lebar penuh (sesuai large-button) */
+.large-button {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 1.1em;
+}

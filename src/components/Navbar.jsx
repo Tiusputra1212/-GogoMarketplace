@@ -1,56 +1,93 @@
-// D:\-GogoMarketplace\-GogoMarketplace\src\components\Navbar\Navbar.jsx
-
-import React, { useState } from 'react'; 
+import React, { useState, useEffect, useRef } from 'react'; 
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { useAuth } from '../context/AuthContext'; 
 
-// 🔑 1. IMPORT FILE LOGO DI SINI
-// Sesuaikan path jika 'logo.png' berada di tempat lain (misalnya '../../public/logo.png')
 import LogoImage from '../assets/logo.png'; 
 
 function Navbar() {
-  // State untuk mengontrol visibilitas dropdown
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
+  // State untuk mengontrol visibilitas dropdown User/Login
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false); 
+  // State untuk mengontrol visibilitas dropdown Beranda
+  const [isHomeDropdownOpen, setIsHomeDropdownOpen] = useState(false);
   
   const ver = '1.0.0'; 
   const navigate = useNavigate();
   
-  // Dapatkan state dari AuthContext
-  const { isLoggedIn, username, logout } = useAuth(); 
+  // Ambil semua data dan fungsi yang diperlukan dari context
+  const { isLoggedIn, user: username, logout } = useAuth(); 
+
+  // Referensi untuk menangani klik di luar komponen (untuk menutup dropdown)
+  const dropdownRef = useRef(null);
+
+  // Efek untuk menangani klik di luar dropdown dan tombol ESC
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsUserDropdownOpen(false);
+        setIsHomeDropdownOpen(false);
+      }
+    };
+
+    const handleEscapeKey = (event) => {
+      if (event.key === 'Escape') {
+        setIsUserDropdownOpen(false);
+        setIsHomeDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscapeKey);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, []);
+
 
   const handleLogout = () => {
     logout(); 
-    navigate('/'); 
+    navigate('/login'); // Arahkan ke halaman login setelah logout
+    setIsUserDropdownOpen(false);
   };
 
-  // Fungsi untuk membuka/menutup dropdown (Jika ini adalah dropdown user, beri nama yang lebih spesifik)
-  const toggleUserDropdown = () => { 
-    setIsDropdownOpen(prev => !prev);
+  // Fungsi untuk membuka/menutup dropdown Beranda
+  const toggleHomeDropdown = (event) => {
+    event.stopPropagation(); // Mencegah event mousedown global menutupnya segera
+    if (isLoggedIn) {
+      setIsHomeDropdownOpen(prev => !prev);
+      setIsUserDropdownOpen(false); // Pastikan dropdown user tertutup
+    } else {
+      navigate('/'); 
+    }
+  };
+
+  // Fungsi untuk membuka/menutup dropdown User
+  const toggleUserDropdown = (event) => { 
+    event.stopPropagation();
+    setIsUserDropdownOpen(prev => !prev);
+    setIsHomeDropdownOpen(false); // Pastikan dropdown home tertutup
   };
   
-  // Fungsi handler untuk link Dashboard
   const handleDashboardClick = () => {
-    setIsDropdownOpen(false); 
-    navigate('/dashboard'); // Ganti dengan path halaman user Anda yang sebenarnya
+    setIsUserDropdownOpen(false); 
+    navigate('/'); // Ganti dengan rute dashboard yang sebenarnya
   };
 
-  // ➡️ Logika Kontrol Autentikasi (AuthControl tidak berubah signifikan)
   const AuthControl = () => {
     if (isLoggedIn) {
       return (
-        // TAMPILAN KETIKA SUDAH LOGIN (Dropdown User)
         <div className="user-profile-wrapper">
           <span 
             className="welcome-username clickable" 
             onClick={toggleUserDropdown}
           >
             {username} 
-            <i className={`arrow-icon ${isDropdownOpen ? 'up' : 'down'}`}></i>
           </span>
 
-          {isDropdownOpen && (
+          {isUserDropdownOpen && (
             <motion.div 
               className="dropdown-menu"
               initial={{ opacity: 0, y: -10 }}
@@ -71,7 +108,6 @@ function Navbar() {
       );
     } else {
       return (
-        // TAMPILAN KETIKA BELUM LOGIN (Teks Link "Masuk")
         <Link 
           to="/login"
           className="login-text-link" 
@@ -90,23 +126,51 @@ function Navbar() {
       transition={{ type: "spring", stiffness: 100, delay: 0.2 }}
     >
       <div className="navbar-left">
-        {/* 🔑 2. GANTI TEKS DENGAN GAMBAR LOGO */}
         <Link to="/" className="navbar-logo">
           <img src={LogoImage} alt="#GOGOMARKETPLACE Logo" className="logo-img" />
         </Link>
       </div>
       
-      <div className="navbar-right">
-        {/* 1. List Navigasi (ul) */}
+      <div className="navbar-right" ref={dropdownRef}>
         <ul className="nav-links">
-          <li><Link to="/">Beranda</Link></li> 
-            {/* Tambahkan kembali link Program dan Joki Program jika perlu */}
+          {/* Menu Dropdown Beranda */}
+          <li 
+                className={`nav-item-dropdown ${!isLoggedIn ? 'disabled-link' : ''}`}
+                onClick={toggleHomeDropdown} 
+          >
+            <span className="nav-link-dropdown-trigger clickable">
+              Beranda 
+            </span>
+            
+            {isLoggedIn && isHomeDropdownOpen && (
+              <motion.div
+                className="dropdown-menu home-dropdown"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.15 }}
+              >
+                <Link to="/sale" className="dropdown-item" onClick={() => setIsHomeDropdownOpen(false)}>
+                  Menjual Program
+                </Link>
+                
+                <div className="dropdown-divider"></div>
+
+                <Link to="/beli" className="dropdown-item" onClick={() => setIsHomeDropdownOpen(false)}>
+                  Beli Program
+                </Link>
+
+                <Link to="/joki" className="dropdown-item" onClick={() => setIsHomeDropdownOpen(false)}>
+                  Joki Program
+                </Link>
+
+              </motion.div>
+            )}
+          </li>
         </ul>
     
-        {/* 2. Kontrol User/Login (Sejajar dengan ul) */}
         <AuthControl /> 
         
-        {/* 3. Versi (Sejajar dengan ul) */}
         <span className="version-number">{`V${ver}`}</span> 
       </div>
     </motion.nav>

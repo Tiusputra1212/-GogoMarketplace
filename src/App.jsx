@@ -10,6 +10,7 @@ import HeroSection from './components/HeroSection';
 import CardSection from './components/CardSection';
 import Login from './components/Login';
 import Register from './components/Register';
+import Sale from './components/Sale';
 import './App.css';
 
 export const version = '0.4.1';
@@ -36,6 +37,7 @@ export default function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             {/* Tambahkan halaman Dashboard atau Profile di sini */}
+            <Route path="/sale" element={<Sale />} />
           </Routes>
         </div>
       </Router>
