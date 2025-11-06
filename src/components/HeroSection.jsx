@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import './HeroSection.css';
+// 1. PASTIKAN PATH INI BENAR SESUAI LOKASI logo.png ANDA
+import LogoImage from '../assets/logo.png'; 
 
 var app = "../../app.jsx"
 var joki = ""
@@ -27,6 +29,8 @@ const backgroundVariants = {
   }
 }
 
+// ... (Bagian import dan variants tetap sama)
+
 function HeroSection() {
   return (
     <div className="hero-container">
@@ -39,22 +43,28 @@ function HeroSection() {
       </motion.div>
 
       <div className="hero-content">
-        <motion.h1
-          variants={textVariants}
+        {/* LOGO DI SINI */}
+        <motion.img
+          src={LogoImage} // Menggunakan variabel import
+          alt="Logo GoGo Marketplace"
+          className="header-logo"
+          variants={textVariants} 
           initial="hidden"
           animate="visible"
-          transition={{delay: 0.4}}
-        >
-          #GOGOMARKETPLACE
-        </motion.h1>
+          transition={{delay: 0.2}} 
+        />
+        
+        {/* H1 KOSONG DIHAPUS, JADI P LANGSUNG DI BAWAH LOGO */}
+        
         <motion.p
           variants={textVariants}
           initial="hidden"
           animate="visible"
-          transition={{delay: 0.6}}
+          transition={{delay: 0.4}} // Geser animasi sedikit lebih cepat
         >
           Platform Terpercaya untuk Jual & Joki Program
         </motion.p>
+        
         <div className="hero-buttons">
           <motion.button
             className="btn-primary"

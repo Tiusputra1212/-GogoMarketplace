@@ -9,9 +9,34 @@
     overflow: hidden;
     margin-top: 60px; 
 }
-
+/* Atur container utama untuk perataan (jika belum ada) */
 .hero-content {
-    max-width: 900px;
+    display: flex;
+    flex-direction: column; /* Susun konten secara vertikal */
+    align-items: center;    /* Pusatkan secara horizontal */
+    text-align: center;
+    /* Pastikan z-index tinggi agar konten di depan overlay */
+    z-index: 10; 
+}
+
+/* 1. Kontrol spasi di bawah logo */
+.hero-content .header-logo {
+    /* Atur lebar agar logo tidak terlalu besar, sesuai gambar Anda */
+    width: clamp(250px, 60vw, 400px); 
+    height: auto;
+    /* Atur margin bawah ke nilai yang sangat kecil atau nol */
+    margin-bottom: 5px; /* Coba 5px, atau 0px jika ingin sangat rapat */
+    margin-top: -20px; /* Coba naikkan sedikit jika masih ada spasi dari atas */
+}
+
+/* 2. Kontrol spasi di atas teks paragraf */
+.hero-content p {
+    /* Hapus margin atas pada teks (p) agar merapat ke logo di atasnya */
+    margin-top: 0; 
+    /* Atur sedikit margin bawah agar ada jarak ke tombol */
+    margin-bottom: 30px; 
+    /* Sesuaikan ukuran font jika diperlukan */
+    font-size: 1.2rem; 
 }
 
 .hero-background-overlay {
@@ -30,8 +55,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-    radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.2) 1.5px, transparent 0);
+  background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.2) 1.5px, transparent 0);
   background-size: 40px 40px; /* Jaring-jaring lebih besar */
   animation: mesh-pan 60s linear infinite;
   opacity: 0.8;
@@ -60,7 +84,7 @@
 
 .hero-content p {
   font-size: 1.5em; /* Lebih besar */
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.9);
 }

@@ -1,87 +1,165 @@
+/* ================================================= */
+/* Navbar Utama dan Logo                 */
+/* ================================================= */
+
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 50px;
-  background-color: white; /* Navbar menjadi putih solid */
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 10px var(--shadow-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: white; 
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px var(--shadow-color);
 }
 
 .navbar-logo {
-  color: var(--light-text); /* Warna gelap */
-  font-size: 24px;
-  font-weight: 700;
-  text-decoration: none;
+    /* Hapus styling teks karena sekarang berisi gambar */
+    text-decoration: none;
+    display: flex; 
+    align-items: center;
+    /* Hapus: color, font-size, font-weight */
 }
+
+/* 🔑 KUNCI PERBAIKAN: Mengatur ukuran gambar logo */
+.logo-img {
+    height: 40px; /* Atur ketinggian logo, misalnya 40px */
+    width: auto;  /* Pastikan lebar menyesuaikan secara proporsional */
+    max-height: 50px; /* Batas maksimum jika Anda membutuhkan safety net */
+}
+
+/* ================================================= */
+/* Navigasi Kanan (Menu & Kontrol User)  */
+/* ================================================= */
 
 .navbar-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+    display: flex;
+    align-items: center; 
+    gap: 30px; 
 }
 
+/* --- Navigasi Links (ul.nav-links) --- */
 .nav-links {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 30px;
-  margin-right: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px; 
+    align-items: center; 
 }
 
+/* Styling untuk semua link di .nav-links */
 .nav-links a {
-  color: var(--light-text);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
+    color: var(--light-text);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: var(--primary-color);
+    color: var(--primary-color);
 }
 
-.btn-masuk {
-  padding: 8px 24px;
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-right: 10px;
-  transition: background-color 0.2s ease;
+/* --- Styling Link "Masuk" (.login-text-link) --- */
+.login-text-link {
+    color: var(--light-text); 
+    text-decoration: none;
+    font-weight: 600; 
+    transition: color 0.3s ease;
+    padding: 0; 
 }
 
+.login-text-link:hover {
+    color: var(--primary-color); 
+}
+
+
+/* --- Styling User Profile (Dropdown) --- */
+.user-profile-wrapper {
+    position: relative; 
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.welcome-username.clickable {
+    padding: 0; 
+    font-weight: 600;
+    color: var(--light-text); 
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.welcome-username.clickable:hover {
+    color: var(--primary-color); 
+}
+
+/* --- Styling Dropdown Menu --- */
+.dropdown-menu {
+    position: absolute;
+    top: 100%; 
+    right: 0;
+    margin-top: 5px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.dropdown-item {
+    width: 100%;
+    padding: 10px 15px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #4a5568;
+    transition: background-color 0.1s;
+}
+
+.dropdown-item:hover {
+    background-color: #f7fafc;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: #edf2f7;
+    margin: 4px 0;
+}
+
+.logout-item {
+    color: #e53e3e; 
+}
+
+.arrow-icon {
+    margin-left: 8px;
+    border: solid var(--light-text);
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transition: transform 0.2s;
+}
+
+.arrow-icon.down {
+    transform: rotate(45deg);
+}
+
+.arrow-icon.up {
+    transform: rotate(-135deg);
+}
+
+/* Styling untuk Versi */
 .version-number {
-  font-size: 12px;
-  color: #666;
-  margin-left: auto;
-}
-
-@media screen and (max-width: 768px) {
-    
-    .navbar {
-        padding: 15px 20px; 
-    }
-
-    .navbar-logo {
-        font-size: 18px; 
-    }
-
-    .navbar-right {
-        gap: 10px;
-    }
-
-    .nav-links {
-        display: none; 
-    }
-    .btn-masuk {
-        padding: 8px 15px; 
-        font-size: 14px;
-    }
+    font-weight: 600;
+    color: var(--light-text);
 }

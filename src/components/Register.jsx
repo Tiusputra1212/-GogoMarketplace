@@ -1,41 +1,72 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion'; 
-import { Link } from 'react-router-dom'; // Untuk link kembali ke Login
+import { Link, useNavigate } from 'react-router-dom'; // 👈 Import useNavigate
 import './Register.css';
 
-// Anda mungkin perlu menginstal React Icons: npm install react-icons
-// Jika menggunakan React Icons, ganti <i> dengan komponen ikon yang sesuai.
-
 function Register() {
+  // PENTING: Gunakan 'username' atau 'name' secara konsisten. 
+  // Saya pertahankan 'name' sesuai kode Anda, tetapi seringkali disebut 'username' untuk autentikasi.
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [error, setError] = useState(''); // State untuk pesan kesalahan
+  
+  const navigate = useNavigate(); // 👈 Inisialisasi hook useNavigate
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => { // 👈 Jadikan async
     event.preventDefault(); 
-    
-    // Logika Validasi Pendaftaran Dasar
+    setError('');
+
+    // 1. Logika Validasi Frontend
     if (password !== confirmPassword) {
-      alert("Konfirmasi password tidak cocok!");
+      setError("Konfirmasi password tidak cocok!");
       return;
     }
     if (!termsAccepted) {
-      alert("Anda harus menyetujui syarat & ketentuan.");
+      setError("Anda harus menyetujui syarat & ketentuan.");
       return;
     }
-    
-    console.log('Pendaftaran berhasil:', { name, email, password });
-    alert('Pendaftaran Berhasil! Mengalihkan ke halaman login...');
-    
-    // Biasanya, di sini Anda akan menggunakan navigate('/login')
+
+    try {
+      // 2. Mengirim data ke API Backend
+      const response = await fetch('http://localhost:5000/api/register', { // Ganti URL ini!
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: name, // Kirim sebagai username (sesuaikan dengan backend Anda)
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json(); // Ambil respons dari server
+
+      if (response.ok) {
+        // Pendaftaran Berhasil!
+        alert('Pendaftaran Berhasil! Sekarang Anda bisa masuk.');
+        
+        // 🚨 3. Mengalihkan ke halaman Login
+        navigate('/login'); 
+
+      } else {
+        // Pendaftaran Gagal (misalnya: username/email sudah terdaftar, error validasi server)
+        // Ambil pesan error dari backend jika tersedia
+        setError(data.message || 'Pendaftaran gagal. Silakan coba lagi.'); 
+        
+      }
+    } catch (err) {
+      // Kesalahan Jaringan
+      console.error('Terjadi kesalahan koneksi:', err);
+      setError('Gagal terhubung ke server. Pastikan server backend berjalan.');
+    }
   };
 
   return (
     <div className="register-container">
-      {/* Jika Anda ingin partikel di sini juga, tambahkan komponen <Particles> di atas <motion.form> */}
-      
       <motion.form
         className="register-form"
         onSubmit={handleSubmit}
@@ -44,6 +75,9 @@ function Register() {
         transition={{ type: "spring", stiffness: 120 }}
       >
         <h2 className="form-title">DAFTAR</h2> 
+        
+        {/* Menampilkan pesan error */}
+        {error && <p className="error-message" style={{ color: 'red', margin: '10px 0' }}>{error}</p>}
 
         {/* 1. INPUT NAMA */}
         <div className="form-group">
@@ -98,7 +132,6 @@ function Register() {
               required
               placeholder="Confirm a password"
             />
-            {/* Opsi untuk menampilkan/menyembunyikan password, perlu logika JS */}
             <i className="Repassword"></i> 
           </div>
         </div>
