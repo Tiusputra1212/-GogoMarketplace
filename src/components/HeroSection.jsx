@@ -1,11 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import './HeroSection.css';
-// 1. PASTIKAN PATH INI BENAR SESUAI LOKASI logo.png ANDA
 import LogoImage from '../assets/logo.png'; 
+import { Link } from 'react-router-dom'; // Import Link jika ingin menggunakan routing
 
-var app = "../../app.jsx"
-var joki = ""
+// Konstanta WhatsApp untuk Joki Program
+const JOKI_HP = "082247011652";
+const JOKI_MESSAGE = "Halo, saya tertarik dengan layanan Joki Tugas. Apakah Anda bisa membantu?";
 
 const textVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -29,7 +30,21 @@ const backgroundVariants = {
   }
 }
 
-// ... (Bagian import dan variants tetap sama)
+// FUNGSI KHUSUS UNTUK MEMBUKA WHATSAPP
+const openJokiWhatsApp = () => {
+    const cleanHp = String(JOKI_HP).replace(/[^\d]/g, '');
+    let formattedHp = cleanHp;
+    // Pastikan kode negara 62
+    if (cleanHp.startsWith('0')) {
+        formattedHp = '62' + cleanHp.substring(1);
+    }
+    
+    const message = encodeURIComponent(JOKI_MESSAGE);
+    const url = `https://wa.me/${formattedHp}?text=${message}`;
+    
+    window.open(url, '_blank');
+};
+
 
 function HeroSection() {
   return (
@@ -43,7 +58,7 @@ function HeroSection() {
       </motion.div>
 
       <div className="hero-content">
-        {/* LOGO DI SINI */}
+        {/* LOGO */}
         <motion.img
           src={LogoImage} // Menggunakan variabel import
           alt="Logo GoGo Marketplace"
@@ -54,18 +69,17 @@ function HeroSection() {
           transition={{delay: 0.2}} 
         />
         
-        {/* H1 KOSONG DIHAPUS, JADI P LANGSUNG DI BAWAH LOGO */}
-        
         <motion.p
           variants={textVariants}
           initial="hidden"
           animate="visible"
-          transition={{delay: 0.4}} // Geser animasi sedikit lebih cepat
+          transition={{delay: 0.4}} 
         >
           Platform Terpercaya untuk Jual & Joki Program
         </motion.p>
         
         <div className="hero-buttons">
+          {/* BUTTON BELI PROGRAM */}
           <motion.button
             className="btn-primary"
             variants={buttonVariants}
@@ -74,9 +88,12 @@ function HeroSection() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <a href='app'>
+            {/* Menggunakan Link untuk routing internal */}
+            <a href='/'>
             <i className="fas fa-shopping-cart"></i> Beli Program </a>
           </motion.button>
+
+          {/* BUTTON JOKI PROGRAM (WHATSAPP) */}
           <motion.button
             className="btn-secondary"
             variants={buttonVariants}
@@ -84,7 +101,7 @@ function HeroSection() {
             animate="visible"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            
+            onClick={openJokiWhatsApp} // Panggil fungsi WhatsApp di sini
           >
             <i className="fas fa-gamepad"></i> Joki Program
           </motion.button>

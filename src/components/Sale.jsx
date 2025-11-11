@@ -188,7 +188,7 @@ function MenjualProgram() {
             // PENTING: Panggil fungsi handleChange yang sudah dimodifikasi
             onChange={handleChange} 
             
-            placeholder="812xxxxxxxx" // Contoh sisa nomor tanpa '0'
+            placeholder="0812xxxxxxxx" // Contoh sisa nomor tanpa '0'
             required 
             style={{ 
                 flexGrow: 1, 
