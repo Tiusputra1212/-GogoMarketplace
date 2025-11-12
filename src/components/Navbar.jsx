@@ -154,15 +154,7 @@ function Navbar() {
                   Menjual Program
                 </Link>
                 
-                <div className="dropdown-divider"></div>
-
-                <Link to="/beli" className="dropdown-item" onClick={() => setIsHomeDropdownOpen(false)}>
-                  Beli Program
-                </Link>
-
-                <Link to="/joki" className="dropdown-item" onClick={() => setIsHomeDropdownOpen(false)}>
-                  Joki Program
-                </Link>
+                <div className="dropdown-divider"></div>    
 
               </motion.div>
             )}
