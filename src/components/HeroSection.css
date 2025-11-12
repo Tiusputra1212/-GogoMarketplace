@@ -9,33 +9,22 @@
     overflow: hidden;
     margin-top: 60px; 
 }
-/* Atur container utama untuk perataan (jika belum ada) */
 .hero-content {
     display: flex;
-    flex-direction: column; /* Susun konten secara vertikal */
-    align-items: center;    /* Pusatkan secara horizontal */
+    flex-direction: column;
+    align-items: center;   
     text-align: center;
-    /* Pastikan z-index tinggi agar konten di depan overlay */
     z-index: 10; 
 }
-
-/* 1. Kontrol spasi di bawah logo */
 .hero-content .header-logo {
-    /* Atur lebar agar logo tidak terlalu besar, sesuai gambar Anda */
     width: clamp(250px, 60vw, 400px); 
     height: auto;
-    /* Atur margin bawah ke nilai yang sangat kecil atau nol */
-    margin-bottom: 5px; /* Coba 5px, atau 0px jika ingin sangat rapat */
-    margin-top: -20px; /* Coba naikkan sedikit jika masih ada spasi dari atas */
-}
+    margin-bottom: 5px;
+    margin-top: -20px; }
 
-/* 2. Kontrol spasi di atas teks paragraf */
 .hero-content p {
-    /* Hapus margin atas pada teks (p) agar merapat ke logo di atasnya */
     margin-top: 0; 
-    /* Atur sedikit margin bawah agar ada jarak ke tombol */
     margin-bottom: 30px; 
-    /* Sesuaikan ukuran font jika diperlukan */
     font-size: 1.2rem; 
 }
 
@@ -56,7 +45,7 @@
   width: 100%;
   height: 100%;
   background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.2) 1.5px, transparent 0);
-  background-size: 40px 40px; /* Jaring-jaring lebih besar */
+  background-size: 40px 40px;
   animation: mesh-pan 60s linear infinite;
   opacity: 0.8;
 }
@@ -66,11 +55,10 @@
   to { background-position: 4000px 4000px; } 
 }
 
-
 .hero-content {
   position: relative;
   z-index: 1;
-  color: white; /* Teks putih di atas latar biru */
+  color: white;
   max-width: 900px;
   padding: 0 20px;
 }
@@ -83,7 +71,7 @@
 }
 
 .hero-content p {
-  font-size: 1.5em; /* Lebih besar */
+  font-size: 1.5em;
   margin-bottom: 20px;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.9);
@@ -98,10 +86,9 @@
 .hero-buttons .btn-primary, .hero-buttons .btn-secondary {
   font-size: 1.1em;
   padding: 12px 30px;
-  border-radius: 50px; /* Tombol lebih melengkung */
+  border-radius: 50px;
 }
 
-/* Tombol Beli Program (Primer) */
 .hero-buttons .btn-primary {
   background-color: white;
   color: var(--primary-color);
@@ -139,7 +126,7 @@
 
 @media screen and (max-width: 480px) {
   .hero-content h1 {
-    font-size: 1.8rem; /* lebih kecil untuk Android kecil */
+    font-size: 1.8rem; 
     line-height: 1.05;
     letter-spacing: 0.8px;
   }
@@ -151,8 +138,7 @@
 
 @media screen and (max-width: 360px) {
   .hero-content h1 {
-    font-size: 1.6rem; /* perangkat sangat kecil */
-  }
+    font-size: 1.6rem; }
 
   .hero-content p {
     font-size: 0.95rem;

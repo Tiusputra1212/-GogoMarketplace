@@ -1,6 +1,3 @@
-/* ==================================== */
-/* Container Halaman Register (Sama dengan Login) */
-/* ==================================== */
 .register-container {
   display: flex;
   justify-content: center;
@@ -17,24 +14,17 @@
 
 .register-form {
   background: #ffffff;
-  /* PERUBAHAN 1: Kurangi padding secara keseluruhan */
   padding: 30px 40px; 
   border-radius: 10px; 
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); 
   width: 100%;
-  
-  /* PERUBAHAN 2: Kurangi lebar maksimum form */
-  max-width: 400px; /* Diubah dari 470px menjadi 400px */
-  
+  max-width: 400px; 
   text-align: center;
   box-sizing: border-box;
   position: relative; 
   z-index: 1; 
 }
 
-/* ==================================== */
-/* Header / Title                       */
-/* ==================================== */
 .register-form h2.form-title {
   margin-top: 0;
   margin-bottom: 40px;
@@ -42,15 +32,11 @@
   font-size: 2rem; 
   font-weight: 700;
   text-align: left;
-  /* Garis bawah seperti di gambar */
   border-bottom: 3px solid #3a7bd5; 
   display: inline-block;
   padding-bottom: 5px;
 }
 
-/* ==================================== */
-/* Form Groups (Input Ringkas)          */
-/* ==================================== */
 .form-group {
   margin-bottom: 25px; 
   text-align: left;
@@ -80,10 +66,8 @@
 
 .input-with-icon input:focus {
   outline: none;
-  border-bottom: 1px solid #3a7bd5; /* Efek fokus yang halus */
-}
+  border-bottom: 1px solid #3a7bd5;}
 
-/* Icon Toggle Password */
 .toggle-password {
     color: #aaa;
     cursor: pointer;
@@ -91,10 +75,6 @@
     padding-left: 10px;
 }
 
-
-/* ==================================== */
-/* Terms & Conditions Checkbox          */
-/* ==================================== */
 .terms-conditions {
     display: flex;
     align-items: center;
@@ -117,13 +97,10 @@
     font-weight: 600;
 }
 
-/* ==================================== */
-/* Tombol Register                      */
-/* ==================================== */
 .btn-register {
   width: 100%;
   padding: 15px; 
-  background-color: #3a7bd5; /* Warna biru solid seperti di gambar */
+  background-color: #3a7bd5;
   color: white;
   border: none;
   border-radius: 5px; 
@@ -140,9 +117,6 @@
   transform: translateY(-1px);
 }
 
-/* ==================================== */
-/* Link Login Now                       */
-/* ==================================== */
 .login-link-section {
     margin-top: 25px;
     font-size: 0.9rem;
@@ -162,9 +136,6 @@
     text-decoration: underline;
 }
 
-/* ==================================== */
-/* Responsif                            */
-/* ==================================== */
 @media (max-width: 600px) {
   .register-form {
     padding: 30px 20px;

@@ -1,0 +1,6 @@
+1. Komentar didalam card
+2. Admin session
+3. Keamanan
+
+
+Tips : Buat lisensi

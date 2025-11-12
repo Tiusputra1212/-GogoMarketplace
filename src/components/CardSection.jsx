@@ -1,29 +1,23 @@
-// File: src/components/CardSection.jsx
-
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import './CardSection.css'; 
-// Import dummy images hanya sebagai fallback jika URL gambar gagal, tapi idealnya gunakan URL dari DB
+
 import ecImage from '../assets/ec.png'; 
 import im from '../assets/im.png';
-
-// Import komponen SearchBar (asumsi sudah ada)
 import SearchBar from './SearchBar';
 
-// URL dasar untuk gambar dan API
+// API Website
 const API_URL = 'http://localhost:5000/api/products';
-const IMAGE_BASE_URL = 'http://localhost:5000/uploads/'; // Sesuai dengan konfigurasi Express.static
+const IMAGE_BASE_URL = 'http://localhost:5000/uploads/'; //Konfigurasi key API
 
-// helper untuk mengkonversi harga string ke angka (tetap dipertahankan)
 const parsePrice = (priceStr) => {
   if (!priceStr) return 0;
   const digits = String(priceStr).replace(/[^\d]/g, '');
   return Number(digits) || 0;
 };
 
-// Fungsi untuk membuat URL WhatsApp
+// URL WA
 const createWhatsAppUrl = (hp, title) => {
-    // Pastikan nomor HP diawali kode negara (misal: 62 untuk Indonesia)
     const cleanHp = String(hp).replace(/[^\d]/g, '');
     let formattedHp = cleanHp;
     if (cleanHp.startsWith('0')) {
@@ -33,55 +27,34 @@ const createWhatsAppUrl = (hp, title) => {
     return `https://wa.me/${formattedHp}?text=${encodeURIComponent(message)}`;
 };
 
-/**
- * FUNGSI Pengecekan status login (Asumsi menggunakan Local Storage)
- * Kita asumsikan kunci 'user' digunakan untuk menyimpan status login.
- */
+// Check Login
 const checkLoginStatus = () => {
-    // Menggunakan 'user' sebagai kunci login, pastikan sesuai dengan implementasi login Anda
     const userItem = localStorage.getItem('user'); 
     return !!userItem; 
 };
 
 
 function CardSection() {
-  const [products, setProducts] = useState([]); // Data asli dari API
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const [selectedCard, setSelectedCard] = useState(null);
   const [query, setQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [priceFilter, setPriceFilter] = useState('all');
-  // State untuk menyimpan status login
   const [isLoggedIn, setIsLoggedIn] = useState(checkLoginStatus());
-  // const [loginAlert, setLoginAlert] = useState(false); // Dihilangkan karena tidak digunakan
-
-  // --- START: PERBAIKAN LOGIKA REAL-TIME LOGIN ---
+  
   useEffect(() => {
-    // 1. Set status awal
     setIsLoggedIn(checkLoginStatus());
-
-    // 2. Fungsi handler untuk event storage
     const handleStorageChange = () => {
-      // Ini memastikan komponen merespons jika status login berubah di tab/jendela lain
       setIsLoggedIn(checkLoginStatus());
     };
-
-    // 3. Tambahkan event listener untuk perubahan localStorage (Event 'storage')
     window.addEventListener('storage', handleStorageChange);
-
-    // 4. Cleanup function (menghapus listener saat komponen dilepas)
     return () => {
       window.removeEventListener('storage', handleStorageChange);
     };
   }, []);
-  // --- END: PERBAIKAN LOGIKA REAL-TIME LOGIN ---
-
-
-  // 1. FETCH DATA DARI BACKEND
   const fetchProducts = useCallback(async () => {
-// ... (Tidak ada perubahan pada fetchProducts)
     setLoading(true);
     setError(null);
     try {
@@ -102,30 +75,22 @@ function CardSection() {
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
-
-  // Categories dihitung dari data asli (products)
   const categories = useMemo(() => {
     const setCat = new Set(products.map(c => String(c.bp).toLowerCase())); 
     return ['all', ...Array.from(setCat)];
   }, [products]);
 
-  // 2. FILTERING DATA
   const filteredCards = useMemo(() => {
     return products.filter(card => {
-// ... (Tidak ada perubahan pada filtering)
       const q = query.trim().toLowerCase();
-      // Pencarian berdasarkan Judul, Deskripsi, Penjual
       const matchesQuery = !q || (
         card.judul.toLowerCase().includes(q) ||
         (card.deskripsi || '').toLowerCase().includes(q) ||
         (card.penjual || '').toLowerCase().includes(q)
-      );
-      
-      // Filter Kategori (Bahasa Pemrograman / BP)
+      );      
       const matchesCategory = categoryFilter === 'all' ||
         String(card.bp).toLowerCase() === String(categoryFilter).toLowerCase();
 
-      // Filter Harga
       const priceNum = parsePrice(card.harga);
       let matchesPrice = true;
       if (priceFilter === '0-500000') matchesPrice = priceNum <= 500000;
@@ -135,13 +100,9 @@ function CardSection() {
       return matchesQuery && matchesCategory && matchesPrice;
     });
   }, [query, categoryFilter, priceFilter, products]);
-
   const containerProps = { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { duration: 0.4 } };
   const cardHover = { whileHover: { scale: 1.02 }, transition: { type: 'spring', stiffness: 300 } };
-
-  // 3. FUNGSI UNTUK KLIK WHATSAPP
   const openWhatsApp = (card) => {
-    // Fungsi ini hanya dipanggil jika isLoggedIn === true
     if (card.hp) {
       const url = createWhatsAppUrl(card.hp, card.judul);
       window.open(url, '_blank');
@@ -149,18 +110,11 @@ function CardSection() {
       alert("Nomor HP penjual tidak tersedia.");
     }
   };
-
-  // FUNGSI BARU: Menangani klik jika login diperlukan
   const handleLoginRequired = () => {
-    // Asumsi: navigasi ke halaman login
     window.location.href = '/login'; 
-    // Tutup modal
     setSelectedCard(null);
   };
-
-
-  // Tampilan Loading dan Error
-  if (loading) return <div className="card-section loading-message">Memuat produk... 🔄</div>;
+    if (loading) return <div className="card-section loading-message">Memuat produk... 🔄</div>;
   if (error) return <div className="card-section error-message">❌ {error}</div>;
 
   return (
@@ -211,7 +165,7 @@ function CardSection() {
         )}
       </div>
 
-      {/* Modal Detail Program */}
+{/* Model Program */}
       {selectedCard && (
         <div
           className="modal-overlay"
@@ -267,16 +221,14 @@ function CardSection() {
             <div style={{ display: 'flex', gap: 8, marginTop: 14 }}>
               <button
                 className="btn-primary"
-                // Logika penentuan onClick dan style berdasarkan status login
                 onClick={isLoggedIn ? () => openWhatsApp(selectedCard) : handleLoginRequired}
                 style={{ 
                   flex: 1, 
-                  // Warna Hijau WA jika sudah login, Kuning jika belum
                   background: isLoggedIn ? '#25d366' : '#ffc107', 
-                  color: isLoggedIn ? 'white' : 'black' // Ganti warna teks jika kuning
+                  color: isLoggedIn ? 'white' : 'black'
                 }} 
               >
-                {isLoggedIn ? 'Hubungi Penjual (WhatsApp)' : '🟡 Login Dulu!'}
+                {isLoggedIn ? 'Hubungi Penjual (WhatsApp)' : 'Login Terlebih Dahulu!'}
               </button>
             </div>
           </motion.div>
@@ -285,5 +237,4 @@ function CardSection() {
     </motion.div>
   );
 }
-
 export default CardSection;

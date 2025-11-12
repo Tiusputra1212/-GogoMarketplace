@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import './SearchBar.css'; // File CSS untuk styling SearchBar
-
+import './SearchBar.css';
 const searchBarVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut", delay: 0.8 } }
@@ -11,15 +10,12 @@ function SearchBar({ categories = [], onSearchChange, onCategoryChange, onPriceC
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('all');
   const [priceRange, setPriceRange] = useState('all');
-
   useEffect(() => {
     if (onSearchChange) onSearchChange(query);
   }, [query, onSearchChange]);
-
   useEffect(() => {
     if (onCategoryChange) onCategoryChange(category);
   }, [category, onCategoryChange]);
-
   useEffect(() => {
     if (onPriceChange) onPriceChange(priceRange);
   }, [priceRange, onPriceChange]);
@@ -66,5 +62,4 @@ function SearchBar({ categories = [], onSearchChange, onCategoryChange, onPriceC
     </motion.div>
   );
 }
-
 export default SearchBar;

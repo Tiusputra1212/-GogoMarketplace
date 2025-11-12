@@ -9,7 +9,7 @@
 }
 
 .card-item {
-    background-color: var(--card-bg); /* Putih */
+    background-color: var(--card-bg);
     border-radius: 10px;
     height: 100%;
     overflow: hidden;

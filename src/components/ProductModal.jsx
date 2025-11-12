@@ -1,6 +1,6 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import './ProductModal.css'; // Styling untuk modal ini
+import { motion, AnimatePresence }
+from 'framer-motion';
 
 function ProductModal({ product, onClose }) {
   if (!product) return null;
@@ -15,7 +15,7 @@ function ProductModal({ product, onClose }) {
       opacity: 1, 
       transition: { delay: 0.1, duration: 0.3, type: "spring", stiffness: 100 } 
     },
-    exit: { y: "100vh", opacity: 0, transition: { duration: 0.3 } } // Keluar ke bawah
+    exit: { y: "100vh", opacity: 0, transition: { duration: 0.3 } }
   };
 
   const handleWhatsAppClick = () => {
@@ -27,7 +27,7 @@ function ProductModal({ product, onClose }) {
     <AnimatePresence>
       <motion.div 
         className="modal-backdrop" 
-        onClick={onClose} // Tutup modal saat klik backdrop
+        onClick={onClose}
         variants={backdropVariants}
         initial="hidden"
         animate="visible"
@@ -35,26 +35,22 @@ function ProductModal({ product, onClose }) {
       >
         <motion.div 
           className="modal-content" 
-          onClick={(e) => e.stopPropagation()} // Mencegah klik di dalam modal menutup backdrop
+          onClick={(e) => e.stopPropagation()}
           variants={modalVariants}
           initial="hidden"
           animate="visible"
           exit="exit"
         >
-          {/* Header Modal */}
           <div className="modal-header">
             <h3>{product.title}</h3>
             <button className="modal-close-btn" onClick={onClose}>
-              &times; {/* Simbol 'x' */}
+              &times;
             </button>
           </div>
 
-          {/* Gambar Produk */}
           <div className="modal-image-container">
             <img src={product.image} alt={product.title} className="modal-product-image" />
           </div>
-
-          {/* Body Detail Produk */}
           <div className="modal-body">
             <p className="modal-description">{product.description}</p>
             
@@ -76,8 +72,6 @@ function ProductModal({ product, onClose }) {
                 <span className="info-value modal-price-highlight">{product.price}</span>
               </div>
             </div>
-            
-            {/* Tombol WhatsApp */}
             <button className="btn-whatsapp" onClick={handleWhatsAppClick}>
               <i className="fab fa-whatsapp"></i> Hubungi via WhatsApp
             </button>

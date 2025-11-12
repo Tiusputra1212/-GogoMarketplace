@@ -4,21 +4,21 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6); /* Warna gelap transparan */
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000; /* Pastikan di atas semua elemen lain */
-  backdrop-filter: blur(5px); /* Efek blur pada background */
+  z-index: 2000;
+  backdrop-filter: blur(5px);
 }
 
 .modal-content {
   background-color: white;
   border-radius: 10px;
-  overflow: hidden; /* Penting agar gambar di dalam tidak meluap */
+  overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  width: 90%; /* Lebar di ponsel */
-  max-width: 600px; /* Lebar maksimum di desktop */
+  width: 90%;
+  max-width: 600px;
   position: relative;
   display: flex;
   flex-direction: column;

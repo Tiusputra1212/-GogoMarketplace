@@ -7,21 +7,12 @@ import { useAuth } from '../context/AuthContext';
 import LogoImage from '../assets/logo.png'; 
 
 function Navbar() {
-  // State untuk mengontrol visibilitas dropdown User/Login
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false); 
-  // State untuk mengontrol visibilitas dropdown Beranda
-  const [isHomeDropdownOpen, setIsHomeDropdownOpen] = useState(false);
-  
   const ver = '1.0.0'; 
   const navigate = useNavigate();
-  
-  // Ambil semua data dan fungsi yang diperlukan dari context
   const { isLoggedIn, user: username, logout } = useAuth(); 
-
-  // Referensi untuk menangani klik di luar komponen (untuk menutup dropdown)
   const dropdownRef = useRef(null);
 
-  // Efek untuk menangani klik di luar dropdown dan tombol ESC
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -49,31 +40,29 @@ function Navbar() {
 
   const handleLogout = () => {
     logout(); 
-    navigate('/login'); // Arahkan ke halaman login setelah logout
+    navigate('/login'); 
     setIsUserDropdownOpen(false);
   };
 
-  // Fungsi untuk membuka/menutup dropdown Beranda
   const toggleHomeDropdown = (event) => {
-    event.stopPropagation(); // Mencegah event mousedown global menutupnya segera
+    event.stopPropagation(); 
     if (isLoggedIn) {
       setIsHomeDropdownOpen(prev => !prev);
-      setIsUserDropdownOpen(false); // Pastikan dropdown user tertutup
+      setIsUserDropdownOpen(false); 
     } else {
       navigate('/'); 
     }
   };
 
-  // Fungsi untuk membuka/menutup dropdown User
   const toggleUserDropdown = (event) => { 
     event.stopPropagation();
     setIsUserDropdownOpen(prev => !prev);
-    setIsHomeDropdownOpen(false); // Pastikan dropdown home tertutup
+    setIsHomeDropdownOpen(false); 
   };
   
   const handleDashboardClick = () => {
     setIsUserDropdownOpen(false); 
-    navigate('/'); // Ganti dengan rute dashboard yang sebenarnya
+    navigate('/'); 
   };
 
   const AuthControl = () => {
@@ -123,50 +112,37 @@ function Navbar() {
       className="navbar"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ type: "spring", stiffness: 100, delay: 0.2 }}
-    >
+      transition={{ type: "spring", stiffness: 100, delay: 0.2 }} >
       <div className="navbar-left">
         <Link to="/" className="navbar-logo">
           <img src={LogoImage} alt="#GOGOMARKETPLACE Logo" className="logo-img" />
         </Link>
       </div>
-      
       <div className="navbar-right" ref={dropdownRef}>
         <ul className="nav-links">
-          {/* Menu Dropdown Beranda */}
           <li 
                 className={`nav-item-dropdown ${!isLoggedIn ? 'disabled-link' : ''}`}
-                onClick={toggleHomeDropdown} 
-          >
-            <span className="nav-link-dropdown-trigger clickable">
-              Beranda 
-            </span>
-            
-            {isLoggedIn && isHomeDropdownOpen && (
-              <motion.div
-                className="dropdown-menu home-dropdown"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.15 }}
-              >
-                <Link to="/sale" className="dropdown-item" onClick={() => setIsHomeDropdownOpen(false)}>
-                  Menjual Program
-                </Link>
-                
-                <div className="dropdown-divider"></div>    
+                onClick={toggleHomeDropdown}>
+            <span className="nav-link-dropdown-trigger clickable"> Beranda </span>
 
-              </motion.div>
-            )}
-          </li>
-        </ul>
-    
-        <AuthControl /> 
-        
-        <span className="version-number">{`V${ver}`}</span> 
-      </div>
-    </motion.nav>
-  );
+{/* DropDown */}
+    {isLoggedIn && isHomeDropdownOpen && (
+    <motion.div
+    className="dropdown-menu home-dropdown"
+    initial={{ opacity: 0, y: -10 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -10 }}
+    transition={{ duration: 0.15 }}>
+    <Link to="/sale" className="dropdown-item" onClick={() => setIsHomeDropdownOpen(false)}>Menjual Program</Link>
+    <div className="dropdown-divider"></div>
+    </motion.div>
+    )}
+    </li> </ul>
+<AuthControl /> 
+<span className="version-number">{`V${ver}`}</span> 
+</div>
+</motion.nav>
+);
 }
 
 export default Navbar;
