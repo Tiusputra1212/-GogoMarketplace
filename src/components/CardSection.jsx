@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import './CardSection.css'; 
-
-import ecImage from '../assets/ec.png'; 
-import im from '../assets/im.png';
 import SearchBar from './SearchBar';
 
 // API Website
